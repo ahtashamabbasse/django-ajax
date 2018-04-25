@@ -44,3 +44,18 @@ def updateBook(request,id):
     else:
         form = InfoForm(instance=book)
     return save(request, form, "update_books.html")
+
+
+def deleteBook(request, id):
+    data = dict()
+    book = get_object_or_404(Info, id=id)
+    if request.method == "POST":
+            book.delete()
+            data['books'] = render_to_string(template_name='booksRow.html', request=request,
+                                             context={'books': Info.objects.all()})
+    else:
+        context = {
+            'form': book,
+        }
+        data['html_form'] = render_to_string(template_name='delete_books.html', request=request, context=context)
+    return JsonResponse(data)

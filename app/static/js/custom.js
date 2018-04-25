@@ -36,5 +36,9 @@ $(document).ready(function (e) {
     $(document).on('click', '.EditBtn', showForm)
     $("#exampleModal").on('submit', '#updateForm', saveBook)
 
+    //DeleteForm
+    $(document).on('click', '.deleteBtn', showForm)
+    $("#exampleModal").on('submit', '#deleteForm', saveBook)
+
 
 })
