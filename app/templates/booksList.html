@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block body %}
+    <h1 class="page-header">Books Management</h1>
+    <input type="button" class="btn btn-info " id="createBookForm"  value="Add Books">
+    <table class="table table-responsive">
+        <thead>
+        <tr>
+            <th>Sr#</th>
+            <th>Name</th>
+            <th>Page</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        {% for book in books %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ book.title }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
