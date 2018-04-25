@@ -4,6 +4,6 @@
         <td>{{ book.title }}</td>
         <td></td>
         <td></td>
-        <td><input class="btn btn-warning" value="Edit" type="button"></td>
+        <td><input class="btn btn-warning EditBtn" value="Edit" type="button" data-url="{% url "updateBook" book.id %}" ></td>
     </tr>
 {% endfor %}

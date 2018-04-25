@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.urls import reverse
 from .forms import InfoForm
 from .models import Info
@@ -17,10 +17,10 @@ def save(request, form, t_name):
     if request.method == "POST":
         if form.is_valid():
             form.save()
-            data['books'] = render_to_string(template_name='booksRow.html', request=request, context={'books': Info.objects.all()})
-            # return HttpResponse(json.dumps({'status': "done"}), content_type="application/json")
+            data['books'] = render_to_string(template_name='booksRow.html', request=request,
+                                             context={'books': Info.objects.all()})
         else:
-            return HttpResponse(json.dumps('fail'), content_type="application/json")
+            return HttpResponse(json.dumps({'status': False}), content_type="application/json")
     else:
         context = {
             'form': form,
@@ -35,3 +35,12 @@ def createBook(request):
     else:
         form = InfoForm()
     return save(request, form, "create_books.html")
+
+
+def updateBook(request,id):
+    book=get_object_or_404(Info,id=id)
+    if request.method == "POST":
+        form = InfoForm(request.POST,instance=book)
+    else:
+        form = InfoForm(instance=book)
+    return save(request, form, "update_books.html")

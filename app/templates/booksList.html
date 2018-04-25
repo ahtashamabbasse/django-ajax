@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block body %}
     <h1 class="page-header">Books Management</h1>
-    <input type="button" class="btn btn-info " id="createBookForm"  value="Add Books">
+    <input type="button" class="btn btn-info" data-url="{% url "createBook" %}" id="createBookForm"  value="Add Books">
     <table class="table table-responsive">
         <thead>
         <tr>

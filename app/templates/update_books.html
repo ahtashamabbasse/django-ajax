@@ -1,11 +1,11 @@
 {% load crispy_forms_tags %}
 <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">Create Book</h5>
+    <h5 class="modal-title" id="exampleModalLabel">Update Book</h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form id="createForm" action="{% url "createBook" %}">
+<form id="updateForm" action="{% url "updateBook" form.instance.id %}">
 <div class="modal-body">
 
         {% csrf_token %}
