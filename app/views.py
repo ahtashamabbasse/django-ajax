@@ -9,22 +9,29 @@ import json
 
 # Create your views here.
 def index(request):
-    return render(request, template_name='booksList.html')
+    return render(request, template_name='booksList.html', context={'books': Info.objects.all()})
 
 
-def createBook(request):
+def save(request, form, t_name):
     data = dict()
     if request.method == "POST":
-        form = InfoForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse(json.dumps({'status': "done"}), content_type="application/json")
+            data['books'] = render_to_string(template_name='booksRow.html', request=request, context={'books': Info.objects.all()})
+            # return HttpResponse(json.dumps({'status': "done"}), content_type="application/json")
         else:
             return HttpResponse(json.dumps('fail'), content_type="application/json")
     else:
-        form = InfoForm()
         context = {
-            'form': form
+            'form': form,
         }
-        data['html_form'] = render_to_string(template_name="create_books.html",request=request, context=context )
+        data['html_form'] = render_to_string(template_name=t_name, request=request, context=context)
     return JsonResponse(data)
+
+
+def createBook(request):
+    if request.method == "POST":
+        form = InfoForm(request.POST)
+    else:
+        form = InfoForm()
+    return save(request, form, "create_books.html")

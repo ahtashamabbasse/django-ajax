@@ -1,0 +1,9 @@
+{% for book in books %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ book.title }}</td>
+        <td></td>
+        <td></td>
+        <td><input class="btn btn-warning" value="Edit" type="button"></td>
+    </tr>
+{% endfor %}

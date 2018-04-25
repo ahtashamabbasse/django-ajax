@@ -1,32 +1,32 @@
 $(document).ready(function (e) {
 
 
-    $("#createBookForm").on('click',function (e) {
+    $("#createBookForm").on('click', function (e) {
         $.ajax({
-            url:"/createBook/",
-            type:"get",
-            dataType:"json",
-            beforeSend:function (data) {
+            url: "/createBook/",
+            type: "get",
+            dataType: "json",
+            beforeSend: function (data) {
                 $("#exampleModal").modal('show')
             },
-            success:function (data) {
+            success: function (data) {
                 $("#exampleModal .modal-content").html(data.html_form)
 
             }
         })
     })
 
-    $("#exampleModal").on('submit','#saveForm',function (e) {
+    $("#exampleModal").on('submit', '#saveForm', function (e) {
         e.preventDefault()
-        form=$(this)
-
+        form = $(this)
         $.ajax({
             url: "/createBook/",
-            type:"post",
+            type: "post",
             data: form.serialize(),
             success: function (data) {
-                 console.log(data)
-                $("#id_title").val("")
+                $("tbody").html(data.books)
+                $("#exampleModal").modal('hide')
+
             }
         })
 

@@ -14,15 +14,8 @@
 
         </thead>
         <tbody>
-        {% for book in books %}
-            <tr>
-                <td>{{ forloop.counter }}</td>
-                <td>{{ book.title }}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        {% endfor %}
+
+        {% include "booksRow.html" %}
 
         </tbody>
     </table>
