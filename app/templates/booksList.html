@@ -2,13 +2,16 @@
 {% block body %}
     <h1 class="page-header">Books Management</h1>
     <input type="button" class="btn btn-info" data-url="{% url "createBook" %}" id="createBookForm"  value="Add Books">
-    <table class="table table-responsive">
+    <table class="table table-bordered">
         <thead>
         <tr>
             <th>Sr#</th>
             <th>Name</th>
+            <th>Author</th>
             <th>Page</th>
             <th>Price</th>
+            <th>Publication Date</th>
+
             <th>Action</th>
         </tr>
 
